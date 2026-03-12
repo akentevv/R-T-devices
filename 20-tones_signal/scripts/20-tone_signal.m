@@ -1,7 +1,7 @@
 %% Setting and displaying a signal of 20 tones
 A = 5;
 A_dB = db(A);
-F = 100;
+F = 10;
 Fs = 10e3;
 t = 0.1;
 t_array = 0:1/Fs:t;
@@ -11,7 +11,7 @@ signals = zeros(length(t_array), numSignals);
 
 for i = 1:numSignals % Cycles with signal tones
     frequency = i * 0.18*pi; % frequency surge
-    signals(:, i) = A_dB*sin(2*pi*F_dB* t_array + frequency); % recording tones in array columns
+    signals(:, i) = A_dB*sin(2*pi*F* t_array + frequency); % recording tones in array columns
 end
 
 figure;
