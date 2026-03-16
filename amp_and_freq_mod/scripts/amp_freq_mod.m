@@ -25,7 +25,7 @@ for k = 1:numSignals % the cycle of setting k tones
   end;
 S_fft_mod_db = 20*log10(S_fft_mod/A); % Conversion of amplitude to dB
 figure(1);
-plot(points, S);
+plot(S);
 
 %figure(2);
 %plot(S_fft);
@@ -45,7 +45,7 @@ plot(points, S, points, S_mod);
 
 fcm = 1e4;
 mf = 10;
-S_mod_freq = (A*tones)*cos(2*pi*(fcm+S+mf).*t_array); % Frequency modulation
+S_mod_freq = (A*numSignals)*cos(2*pi*(fcm+S+mf).*t_array); % Frequency modulation
 
 figure(6);
 plot(points, S, points, S_mod_freq);
