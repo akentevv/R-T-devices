@@ -1,16 +1,16 @@
-A = 1; % Амплитуда сигнала
-Fs = 10e4; % Частота дискретизации
+A = 1; % Amplitude
+Fs = 10e4; % Sampling rate
 t = 0.1;
 t_array = 0:1/Fs:t;
 points = 1:1:length(t_array);
-numSignals = 20; % Количество тонов
-df=300/numSignals; % Шаг частоты
-S = zeros(1,length(t_array)); % Массив сигнала
+numSignals = 20; % Number of tones
+df=300/numSignals; % Frequency step
+S = zeros(1,length(t_array)); % Signal array
 S_fft = zeros(1,length(t_array));
 S_fft_shifted = zeros(1,length(t_array));
-S_fft_mod = zeros(1,length(t_array)); % Массив амплитуд спектров
+S_fft_mod = zeros(1,length(t_array)); % Array of spectrum amplitudes
 S_fft_ang = zeros(1,length(t_array));
-for k = 1:numSignals
+for k = 1:numSignals % the cycle of setting k tones
    St = A*exp(2*pi*t_array*1i*k*df);
    S = S + St;
    St_fft = fft(St);
@@ -23,7 +23,7 @@ for k = 1:numSignals
    S_fft_ang = S_fft_ang + St_fft_ang;
    k = k + 1;
   end;
-S_fft_mod_db = 20*log10(S_fft_mod/A); % Перевод амплитуды спектра в децибелы
+S_fft_mod_db = 20*log10(S_fft_mod/A); % Conversion of amplitude to dB
 figure(1);
 plot(points, S);
 
@@ -38,14 +38,14 @@ plot(points, S);
 
 fc = 1e4;
 m = 2;
-S_mod = (1+m.*S).*cos(2*pi*fc*t_array); % Амплитудная модуляция
+S_mod = (1+m.*S).*cos(2*pi*fc*t_array); % Amplitude modulation
 
 figure(5);
 plot(points, S, points, S_mod);
 
 fcm = 1e4;
 mf = 10;
-S_mod_freq = (A*tones)*cos(2*pi*(fcm+S+mf).*t_array); % Частотная модуляция
+S_mod_freq = (A*tones)*cos(2*pi*(fcm+S+mf).*t_array); % Frequency modulation
 
 figure(6);
 plot(points, S, points, S_mod_freq);
