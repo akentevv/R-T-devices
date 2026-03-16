@@ -1,13 +1,13 @@
 %% Setting and displaying a signal of 20 tones
 A = 5;
-A_dB = db(A);
+A_dB = 20*log10(A);
 F = 10;
 Fs = 10e3;
 t = 0.1;
 t_array = 0:1/Fs:t;
 
 numSignals = 20;  % number of signal tones
-signals = zeros(length(t_array), numSignals); 
+signals = zeros(length(t_array), numSignals);
 
 for i = 1:numSignals % Cycles with signal tones
     frequency = i * 0.18*pi; % frequency surge

@@ -1,0 +1,14 @@
+%% DDS generator test 
+
+Fclk = 100e6;
+Fout = 12.5e6;
+Nacc = 24; 
+Nlut = 10;
+Nsamp = 4096;
+amp_bits = 12; 
+
+[y, phase_acc, ftw, phase_index] = dds_core(Fclk, Fout, Nacc, Nlut, Nsamp, amp_bits);
+
+Fout_real = ftw * Fclk / 2^Nacc; 
+delta_freq = Fout - Fout_real;
+dF = Fclk / 2^Nacc; 
